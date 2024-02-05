@@ -1,9 +1,13 @@
+/**
+ * Creates a new video using the webcam as input.
+ * @returns A video element containing the webcam feed.
+ */
 export const startCamera = async () => {
   const videoConstraints = {
-    frameRate: {
-      ideal: 30,
-      max: 60,
-    },
+    // frameRate: {
+    //   ideal: 30,
+    //   max: 60,
+    // },
     height: {
       min: 100,
       ideal: 200,

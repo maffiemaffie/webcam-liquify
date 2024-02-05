@@ -1,6 +1,9 @@
 import { interpolateAt } from "../image-data-helpers.js";
 import { ForEachTransformer } from "./for-each.js"
 
+/**
+ * Transformer that bulges outward or pinches inward at a single point.
+ */
 class Bulge extends ForEachTransformer {
   constructor({x, y, scale, size}) {
     super();

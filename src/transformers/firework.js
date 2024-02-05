@@ -1,6 +1,9 @@
 import { Bulge } from "./bulge.js";
 import { ForEachTransformer } from "./for-each.js";
 
+/**
+ * Transformer that bulges outward or pinches inward based on angle around a single point.
+ */
 class Firework extends ForEachTransformer {
   constructor({x, y, scale, size, spokes}) {
     super();

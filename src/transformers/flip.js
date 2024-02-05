@@ -1,5 +1,8 @@
 import { getPoint, setPoint, eachPoint, cloneFrame } from "../image-data-helpers.js";
 
+/**
+ * Transformer that flips a frame across its vertical axis.
+ */
 const horizontalFlip = {
   transform: (frame) => {
     let returnFrame = cloneFrame(frame);
@@ -12,6 +15,9 @@ const horizontalFlip = {
   }
 };
 
+/**
+ * Transformer that flips a frame across its vertical axis.
+ */
 const verticalFlip = {
   transform: (frame) => {
     let returnFrame = cloneFrame(frame);

@@ -1,3 +1,6 @@
+/**
+ * Records a canvas and saves the video.
+ */
 class Recorder {
   constructor(canvas, frameRate = 30) {
     const stream = canvas.captureStream(frameRate);
@@ -8,22 +11,37 @@ class Recorder {
     this.recorder.onstart = () => console.log("started recording");
   }
 
+  /**
+   * Start the recording.
+   */
   start() {
     this.recorder.start();
   }
 
+  /**
+   * Stops the recording
+   * @param {(string)=>void} callback A callback for the url of the recording.
+   */
   stop(callback) {
-    this.recorder.addEventListener('stop', () => this.processStop(callback));
+    this.recorder.addEventListener('stop', () => this.#processStop(callback), { once: true });
 
     if (this.recorder.state === 'recording') {
       this.recorder.stop();
     }
   }
 
-  processStop(callback) {
+  /**
+   * Creates a url for the recording and readies the next recording.
+   * @param {(string)=>void} callback A callback for the url of the recording.
+   */
+  #processStop(callback) {
+    // create url
     const recordedBlob = new Blob(this.data, { type: "video/webm" });
-    console.log(`recorded: ${recordedBlob.size} bytes of video`);
     const url = URL.createObjectURL(recordedBlob);
+
+    // cleanup
+    this.data = [];
+
     callback(url);
   }
 }
