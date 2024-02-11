@@ -1,11 +1,31 @@
-import { interpolateAt } from "../image-data-helpers.js";
+import { interpolateAt } from "../video/image-data-helpers.js";
 import { ForEachTransformer } from "./for-each.js"
 
 /**
  * Transformer that bulges outward or pinches inward at a single point.
  */
 class Bulge extends ForEachTransformer {
-  constructor({x, y, scale, size}) {
+  /**
+   * Represents the x-coordinate the bulge is centered around.
+   */
+  x: number;
+
+  /**
+   * Represents the y-coordinate the bulge is centered around.
+   */
+  y: number;
+
+  /**
+   * The amount of bulging.
+   */
+  scale: number;
+
+  /**
+   * The size of the falloff radius.
+   */
+  size: number;
+
+  constructor({x, y, scale, size}: {x: number, y: number, scale: number, size: number}) {
     super();
 
     this.x = x;
@@ -14,7 +34,7 @@ class Bulge extends ForEachTransformer {
     this.size = size;
   }
 
-  pixelTransform(frame, x, y, color) {
+  pixelTransform(frame: ImageData, x: number, y: number, color: RGBAColor): RGBAColor {
     if (x === this.x && y === this.y) return color;
 
     const diffX = x - this.x;

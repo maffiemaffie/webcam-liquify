@@ -1,10 +1,30 @@
 import { ForEachTransformer } from "./for-each.js";
-import { interpolateAt } from "../image-data-helpers.js";
+import { interpolateAt } from "../video/image-data-helpers.js";
 
 /*
  * Transformer that rotates a frame based on its proximity to a single point.
 */
 class Swirl extends ForEachTransformer {
+  /**
+   * Represents the x-coordinate of the point being swirled around.
+   */
+  x: number;
+
+  /**
+   * Represents the y-coordinate of the point being swirled around.
+   */
+  y: number;
+
+  /**
+   * The rotation at the center in radians.
+   */
+  turn: number;
+
+  /**
+   * The falloff radius.
+   */
+  size: number;
+
   constructor({x, y, turn, size}) {
     super();
 
@@ -14,7 +34,7 @@ class Swirl extends ForEachTransformer {
     this.size = size;
   }
 
-  pixelTransform(frame, x, y, color) {
+  pixelTransform(frame: ImageData, x: number, y: number, color: RGBAColor): RGBAColor {
     // the point
     if (x === this.x && y === this.y) return color;
 

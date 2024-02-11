@@ -9,13 +9,11 @@ export const startCamera = async () => {
     //   max: 60,
     // },
     height: {
-      min: 100,
-      ideal: 200,
+      ideal: 100,
       max: 300,
     },
     width: {
-      min: 100,
-      ideal: 300,
+      ideal: 150,
       max: 500,
     },
     resizeMode: "crop-and-scale"

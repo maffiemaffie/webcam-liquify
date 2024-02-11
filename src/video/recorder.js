@@ -3,18 +3,16 @@
  */
 class Recorder {
   constructor(canvas, frameRate = 30) {
-    const stream = canvas.captureStream(frameRate);
-    this.recorder = new MediaRecorder(stream);
+    this.stream = canvas.captureStream(frameRate);
     this.data = [];
-
-    this.recorder.ondataavailable = (event) => this.data.push(event.data);
-    this.recorder.onstart = () => console.log("started recording");
   }
 
   /**
    * Start the recording.
    */
   start() {
+    this.recorder = new MediaRecorder(this.stream);
+    this.recorder.ondataavailable = (event) => this.data.push(event.data);
     this.recorder.start();
   }
 

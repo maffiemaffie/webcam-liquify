@@ -1,0 +1,24 @@
+/**
+ * Represents a 8-bit RGBA color.
+ */
+type RGBAColor = {
+  /**
+   * The red value of the color (0-255).
+   */
+  red: number;
+
+  /**
+   * The green value of the color (0-255).
+   */
+  green: number;
+
+  /**
+   * The blue value of the color (0-255).
+   */
+  blue: number;
+
+  /**
+   * The alpha value of the color (0-255).
+   */
+  alpha: number;
+};
